@@ -1,0 +1,80 @@
+
+  
+  <div class="container-fluid row-md-12 m-auto">
+    <div class="row">
+        <div class="col-lg-4 col-12 capsule m-3 ">
+          <h2 class="text-center text-white m-4"> Registration </h2>
+          <form class="form-control borderradius" (ngSubmit)="addNewCredential(f)" #f="ngForm">
+
+            <div class="form-group m-2">
+              <label for="firstName"></label>
+              <input type="text" class="form-control mb-2" id="firstName" name="firstName" placeholder="First name" ngModel>
+            </div>
+            <div class="form-group m-2">
+              <label for="lastName"></label>
+              <input type="text" class="form-control mb-2" id="lastName" name="lastName" placeholder="Last name"  ngModel>
+            </div>
+            <div class="form-group m-2">
+              <label for="password01"></label>
+              <input type="password" class="form-control mb-2" id="password01" name="password01" placeholder="Password"  ngModel>
+            </div>
+            <div class="form-group m-2">
+              <label for="password02"></label>
+              <input type="password" class="form-control mb-2" id="password02" name="password02"  placeholder="Password again"  ngModel>
+            </div>
+            <div class="form-group m-2">
+              <label for="email"></label>
+              <input type="email" class="form-control" id="email" name="email"  aria-describedby="emailHelp" placeholder="Email"  ngModel>
+              <small id="emailHelp" class="form-text text-muted ms-3 m-4 text-center text-wrap">We'll never share your data with anyone else.</small>
+            </div>
+          
+            <div class=" text-center mt-2">
+              <input type="submit" class="btn btn-info text-white m-2" value="Create account"/>
+              <button class="btn btn-primary text-white m-2" (click)="getCredentials()" >Show my credentials</button>
+              <button class="btn btn-warning text-white  m-2" (click)="deleteCredentials()">Erase data</button>
+              
+              <p *ngIf="credentials.length == 0 && !loading && errorMessage == ''">Nincsenek megjeleníthető adatok</p>
+              <ul *ngIf="credentials.length > 0 && !loading" class="list-group my-1">
+                <li *ngFor="let data of credentials"
+                    class=" list-group-item my-1 text-start">
+                  <p class="list-group-item"> Firstname: {{ data.firstName }}</p>
+                  <p class="list-group-item"> Lastname: {{ data.lastName }} </p>
+                  <p class="list-group-item"> Email: {{ data.email }} </p>
+                  </li>
+              </ul>
+
+              <div *ngIf="loading" class="row mx-3">
+                <div class="col-12">
+                  <div  class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden" >Loading credentials...</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row my-2">
+                <div class="col-12">
+                  <div  *ngIf="errorMessage!==''" class="alert alert-danger" role="alert">
+                    {{ errorMessage }}
+                  </div>
+                </div>
+              </div>
+             
+
+            </div>
+          </form>
+        </div>
+      <div class="col-lg-7 col-12 m-3 bg-photo ">
+          <img src="assets/images/bgphoto.jpg" 
+              alt="LogInPage"
+              class="img-fluid borderradius">
+            <!-- <div class="carousel-caption d-md-block text-center">
+              <h1 class="large">Are you our member?</h1>
+              <button class="btn btn-outline-primary m-3">Log in</button>
+            </div> -->
+      </div>
+    </div>
+  </div>
+
+
+
+
